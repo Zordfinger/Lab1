@@ -11,11 +11,13 @@ class Writer
     private string FileName;
     private int CurrentOperationNumber = 1;
     private string Separator = "-------------------------------------------";
+
     public Writer(string FileName)
     {
         this.FileName = FileName;
         using(StreamWriter sw = new StreamWriter(FileName, false))
         {
+            Console.WriteLine("Запись" + FileName);
             sw.WriteLine("Gordeyuk Ivan");
             sw.WriteLine("Genetis search");
             sw.WriteLine(Separator);
@@ -46,6 +48,7 @@ class Writer
         result.AppendLine(Separator);
 
         using (StreamWriter sw = new StreamWriter(FileName, true)) { sw.Write(result.ToString()); }
+        Console.WriteLine("Запись  search " + FileName);
     }
 
     public void Diff(List<GeneticData> data, string protein1, string protein2)
@@ -89,6 +92,7 @@ class Writer
         result.AppendLine(difference.ToString());
         result.AppendLine(Separator);
         using (StreamWriter sw = new StreamWriter(FileName, true)) { sw.Write(result.ToString()); }
+        Console.WriteLine("Запись diff " + FileName);
     }
 
     public void Mode(List<GeneticData> data, string protein)
@@ -126,5 +130,6 @@ class Writer
         result.AppendLine(mostFrequent + " " + max);
         result.AppendLine(Separator);
         using (StreamWriter sw = new StreamWriter(FileName, true)) { sw.Write(result.ToString()); }
+        Console.WriteLine("Запись mode " + FileName);
     }
 }
