@@ -72,7 +72,7 @@ class Reader
                     switch (commands[0])
                     {
                         case "search":
-                            writer.Search(data, commands[1]);
+                            writer.Search(data, RLEDecoding(commands[1]));
                             break;
                         case "diff":
                             writer.Diff(data, commands[1], commands[2]);
