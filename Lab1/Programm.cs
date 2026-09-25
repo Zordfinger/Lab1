@@ -2,12 +2,13 @@
 {
     static void Main(string[] args)
     {
-        Reader reader1 = new("sequences.0.txt", "commands.0.txt", "genedata.0.txt");
-        Reader reader2 = new("sequences.1.txt", "commands.1.txt", "genedata.1.txt");
-        Reader reader3 = new("sequences.2.txt", "commands.2.txt", "genedata.2.txt");
+        string path = "C:\\C#\\Lab1\\Lab1\\";
+        FileWorker reader1 = new(path + "sequences.0.txt", path + "commands.0.txt", path + "genedata.0.txt");
+        FileWorker reader2 = new(path + "sequences.1.txt", path + "commands.1.txt", path + "genedata.1.txt");
+        FileWorker reader3 = new(path + "sequences.2.txt", path + "commands.2.txt", path + "genedata.2.txt");
 
-        reader1.Manipulate();
-        reader2.Manipulate();
-        reader3.Manipulate();
+        reader1.Write();
+        reader2.Write();
+        reader3.Write();
     }
 }
