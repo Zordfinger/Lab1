@@ -78,14 +78,14 @@ static class CommandHandler
     {
         StringBuilder result = new StringBuilder();
 
+        result.AppendLine("amino-acid occurs:");
+
         GeneticData? record = FindGenDataByProtein(data, protein);
         if (record == null)
         {
-            result.AppendLine("Protein not found");
+            result.AppendLine("MISSING:" + protein.Trim());
             return result.ToString();
         }
-
-        result.AppendLine("amino-acid occurs:");
 
         Dictionary<char, int> acids = new Dictionary<char, int>();
 

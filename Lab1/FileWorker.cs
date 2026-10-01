@@ -72,7 +72,7 @@ class FileWorker
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    string[] commandstoreturn = line.Split("\t");
+                    string[] commandstoreturn = line.Trim().Split("\t");
                     if (!(commandstoreturn.Length <= 3 && commandstoreturn.Length > 1))
                     continue;
                     commands.Add(commandstoreturn);
