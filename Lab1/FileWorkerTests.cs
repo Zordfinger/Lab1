@@ -39,7 +39,8 @@ class FileWorkerTests
     {
         if (expected != actual)
         {
-            throw new Exception($"Expected: {expected}, but was: {actual}");
+            throw new Exception(
+                $"Expected: {expected}, but was: {actual}");
         }
     }
 
@@ -47,7 +48,8 @@ class FileWorkerTests
     {
         if (!text.Contains(expected))
         {
-            throw new Exception($"Expected text to contain: [{expected}]");
+            throw new Exception(
+                $"Expected text to contain: [{expected}]");
         }
     }
 
@@ -55,9 +57,14 @@ class FileWorkerTests
     {
         string commandFile = "test_commands.txt";
 
-        File.WriteAllText(commandFile,"search\tACD\nmode\tProtein1\n");
+        File.WriteAllText(
+            commandFile,
+            "search\tACD\nmode\tProtein1\n");
 
-        FileWorker worker = new FileWorker("not_used.txt",commandFile,"not_used_output.txt");
+        FileWorker worker = new FileWorker(
+            "not_used.txt",
+            commandFile,
+            "not_used_output.txt");
 
         List<string[]> commands = worker.CommandFileRead();
 
@@ -78,11 +85,18 @@ class FileWorkerTests
         string commandFile = "test_commands.txt";
         string outputFile = "test_output.txt";
 
-        File.WriteAllText(dataFile,"Protein1\tHuman\tACDE\n");
+        File.WriteAllText(
+            dataFile,
+            "Protein1\tHuman\tACDE\n");
 
-        File.WriteAllText(commandFile,"search\tACD\n");
+        File.WriteAllText(
+            commandFile,
+            "search\tACD\n");
 
-        FileWorker worker = new FileWorker(dataFile,commandFile,outputFile);
+        FileWorker worker = new FileWorker(
+            dataFile,
+            commandFile,
+            outputFile);
 
         worker.Write();
 
@@ -100,11 +114,18 @@ class FileWorkerTests
         string commandFile = "test_commands.txt";
         string outputFile = "test_output.txt";
 
-        File.WriteAllText(dataFile,"Protein1\tHuman\tFK3I\n");
+        File.WriteAllText(
+            dataFile,
+            "Protein1\tHuman\tFK3I\n");
 
-        File.WriteAllText(commandFile,"search\tKIII\n");
+        File.WriteAllText(
+            commandFile,
+            "search\tKIII\n");
 
-        FileWorker worker = new FileWorker(dataFile,commandFile,outputFile);
+        FileWorker worker = new FileWorker(
+            dataFile,
+            commandFile,
+            outputFile);
 
         worker.Write();
 

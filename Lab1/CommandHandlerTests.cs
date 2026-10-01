@@ -26,9 +26,11 @@ class CommandHandlerTests
 
         Check("Search finds sequence", SearchFindsSequence);
         Check("Search returns NOT FOUND", SearchReturnsNotFound);
+
         Check("Diff counts different amino acids", DiffCountsDifference);
         Check("Diff counts different lengths", DiffCountsDifferentLengths);
         Check("Diff reports missing protein", DiffReportsMissingProtein);
+
         Check("Mode finds most frequent amino acid", ModeFindsMostFrequent);
         Check("Mode uses alphabet when frequency is equal", ModeUsesAlphabet);
 
@@ -42,7 +44,8 @@ class CommandHandlerTests
     {
         if (!text.Contains(expected))
         {
-            throw new Exception($"Expected text to contain: [{expected}]");
+            throw new Exception(
+                $"Expected text to contain: [{expected}]");
         }
     }
 
@@ -69,7 +72,7 @@ class CommandHandlerTests
             new GeneticData("Protein2", "Mouse", "GGACDE")
         };
 
-        string result = CommandHandler.Search(data, "AVD");
+        string result = CommandHandler.Search(data, "ZZZ");
 
         Contains(result, "NOT FOUND");
     }
@@ -82,7 +85,10 @@ class CommandHandlerTests
             new GeneticData("Protein2", "Mouse", "ACDF")
         };
 
-        string result = CommandHandler.Diff(data,"Protein1","Protein2");
+        string result = CommandHandler.Diff(
+            data,
+            "Protein1",
+            "Protein2");
 
         Contains(result, "1");
     }
@@ -95,7 +101,10 @@ class CommandHandlerTests
             new GeneticData("Protein2", "Mouse", "ACDEFG")
         };
 
-        string result = CommandHandler.Diff(data,"Protein1","Protein2");
+        string result = CommandHandler.Diff(
+            data,
+            "Protein1",
+            "Protein2");
 
         Contains(result, "2");
     }
@@ -107,7 +116,10 @@ class CommandHandlerTests
             new GeneticData("Protein1", "Human", "ACDE")
         };
 
-        string result = CommandHandler.Diff(data,"Protein1","Unknown");
+        string result = CommandHandler.Diff(
+            data,
+            "Protein1",
+            "Unknown");
 
         Contains(result, "MISSING:Unknown");
     }
@@ -119,7 +131,9 @@ class CommandHandlerTests
             new GeneticData("Protein1", "Human", "ACCCAA")
         };
 
-        string result = CommandHandler.Mode(data,"Protein1");
+        string result = CommandHandler.Mode(
+            data,
+            "Protein1");
 
         Contains(result, "A 3");
     }
@@ -131,7 +145,9 @@ class CommandHandlerTests
             new GeneticData("Protein1", "Human", "CCAA")
         };
 
-        string result = CommandHandler.Mode(data,"Protein1");
+        string result = CommandHandler.Mode(
+            data,
+            "Protein1");
 
         Contains(result, "A 2");
     }
